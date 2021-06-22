@@ -21,11 +21,33 @@ const paddle = {
 
 // Draw the paddle
 function drawPaddle(){
-    context.fillStyle = "#2e3548";
+    context.fillStyle = "rgba(46, 53, 72, 1)";
     context.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
     
-    context.strokeStyle = "#ffcd05";
+    context.strokeStyle = "rgba(255, 205, 5, 1)";
     context.strokeRect(paddle.x, paddle.y, paddle.width, paddle.height);
 }
 
-drawPaddle();
+// Draw function (draws all parts of the game to the canvas)
+function draw(){
+    drawPaddle();
+
+}
+
+// Update game function (game logic)
+function update(){
+
+    paddle.y -= 1;
+}
+
+// Game loop
+function loop(){
+    context.drawImage(bg_img, 0, 0)
+
+    draw();
+
+    update();
+
+    requestAnimationFrame(loop);
+}
+loop();
