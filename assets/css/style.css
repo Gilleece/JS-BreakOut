@@ -1,0 +1,15 @@
+#game {
+    border: 1px solid black;
+    margin-top: 10vh;
+}
+
+.game-center-outer-div {
+    position:fixed;
+    left:50%; 
+}
+
+.game-center-outer-div .game-center-inner-div {
+        position:relative; 
+        left:-50%;
+}
+
