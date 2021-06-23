@@ -14,6 +14,7 @@ let scoreUnit = 10;
 let ballRadius = 12;
 let leftArrow = false;
 let rightArrow = false;
+let gameOverState = false;
 
 // Sets Line Width thicker for visibility
 context.lineWidth = 3;
@@ -76,6 +77,12 @@ function resetBall(){
     ball.dy = -3;
 }
 
+// Game over
+function gameOver(){
+    if(remainingLives <= 0){
+        gameOverState = true;
+    }
+}
 
 // Update game function (game logic)
 function update(){
@@ -84,6 +91,7 @@ function update(){
     ballWallCollision();
     ballPaddleCollision();
     ballBrickCollision();
+    gameOver();
 }
 
 // Game loop
@@ -91,6 +99,8 @@ function loop(){
     context.drawImage(bg_img, 0, 0);
     draw();
     update();
-    requestAnimationFrame(loop);
+    if(! gameOverState){
+        requestAnimationFrame(loop);
+    }
 }
 loop();
