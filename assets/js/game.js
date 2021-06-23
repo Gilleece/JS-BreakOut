@@ -3,9 +3,9 @@ const playSpace = document.getElementById("game");
 const context = playSpace.getContext("2d");
 
 // Game variables and constants
-const PADDLE_WIDTH = 150;
-const PADDLE_MARGIN_BOTTOM = 75;
-const PADDLE_HEIGHT = 20;
+const paddleMarginBottom = 75;
+const paddleHeight = 20;
+let paddleWidth = 150;
 let remainingLives = 5;
 let ballRadius = 12;
 let leftArrow = false;
@@ -16,10 +16,10 @@ context.lineWidth = 3;
 
 // Creates the paddle
 const paddle = {
-    x : playSpace.width/2 - PADDLE_WIDTH/2,
-    y : playSpace.height - PADDLE_MARGIN_BOTTOM - PADDLE_HEIGHT,
-    width : PADDLE_WIDTH,
-    height : PADDLE_HEIGHT,
+    x : playSpace.width/2 - paddleWidth/2,
+    y : playSpace.height - paddleMarginBottom - paddleHeight,
+    width : paddleWidth,
+    height : paddleHeight,
     dx :5
 }
 
@@ -143,6 +143,7 @@ function update(){
     moveBall();
     ballWallCollision();
     ballPaddleCollision();
+    ballBrickCollision();
 }
 
 // Game loop
