@@ -57,7 +57,7 @@ function ballBrickCollision(){
                 if(ball.x + ball.radius > brickMap.x && ball.x - ball.radius < brickMap.x + brick.width && ball.y + ball.radius > brickMap.y && ball.y - ball.radius < brickMap.y + brick.height){
                     ball.dy = - ball.dy;
                     brickMap.status = false; // The brick is removed from play, cannot be collided with.
-                    SCORE += SCORE_UNIT;
+                    score += scoreUnit;
                 }
             }
         }

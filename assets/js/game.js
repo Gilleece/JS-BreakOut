@@ -5,8 +5,12 @@ const context = playSpace.getContext("2d");
 // Game variables and constants
 const paddleMarginBottom = 75;
 const paddleHeight = 20;
+const maxLevel = 5;
 let paddleWidth = 150;
 let remainingLives = 5;
+let level = 1;
+let score = 0;
+let scoreUnit = 10;
 let ballRadius = 12;
 let leftArrow = false;
 let rightArrow = false;
@@ -130,11 +134,28 @@ function resetBall(){
     ball.dy = -3;
 }
 
+// Show score, level and lives
+function showGameStats(text, textX, textY, img, imgX, imgY){
+    // draw text
+    context.fillStyle = "#FFF";
+    context.font = "25px Germania One";
+    context.fillText(text, textX, textY);
+    
+    // draw image
+    context.drawImage(img, imgX, imgY, width = 40, height = 40);
+}
+
 // Draw function (draws all parts of the game to the canvas)
 function draw(){
     drawPaddle();
     drawBall();
     drawBricks();
+    // Score
+    showGameStats(score, 50, 40, scoreImg, 5, 5);
+    // Lives
+    showGameStats(remainingLives, playSpace.width - 40, 40, lifeImg, playSpace.width-70, 5); 
+    // Level
+    showGameStats(level, playSpace.width/2, 40, levelImg, playSpace.width/2 - 45, 5);
 }
 
 // Update game function (game logic)
