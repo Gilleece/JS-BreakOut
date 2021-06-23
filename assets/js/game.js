@@ -2,7 +2,7 @@
 const playSpace = document.getElementById("game");
 const context = playSpace.getContext("2d");
 
-// Game variables and constants
+// Game constants and variables
 const paddleMarginBottom = 75;
 const paddleHeight = 20;
 const maxLevel = 5;
@@ -37,29 +37,6 @@ const ball = {
     dy : -3
 }
 
-// Draws the paddle
-function drawPaddle(){
-    context.fillStyle = "rgba(46, 53, 72, 1)";
-    context.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
-    
-    context.strokeStyle = "rgba(255, 205, 5, 1)";
-    context.strokeRect(paddle.x, paddle.y, paddle.width, paddle.height);
-}
-
-// Draws the ball
-function drawBall(){
-    context.beginPath();
-    
-    context.arc(ball.x, ball.y, ball.radius, 0, Math.PI*2);
-    context.fillStyle = "#ffcd05";
-    context.fill();
-    
-    context.strokeStyle = "#2e3548";
-    context.stroke();
-    
-    context.closePath();
-}
-
 // Paddle input
 document.addEventListener("keydown", function(event){
     if(event.keyCode == 37){
@@ -91,41 +68,6 @@ function moveBall(){
     ball.y += ball.dy;
 }
 
-// Collision detection for ball and wall
-function ballWallCollision(){
-    if(ball.x + ball.radius > playSpace.width || ball.x - ball.radius < 0){
-        ball.dx = - ball.dx;
-    }
-    
-    if(ball.y - ball.radius < 0){
-        ball.dy = -ball.dy;
-    }
-    
-    if(ball.y + ball.radius > playSpace.height){
-        remainingLives--;
-        resetBall();
-    }
-}
-
-// Collision detection for ball and paddle
-function ballPaddleCollision(){
-    if(ball.x < paddle.x + paddle.width && ball.x > paddle.x && paddle.y < paddle.y + paddle.height && ball.y > paddle.y){
-        
-        // Calculate position of ball relative to paddle
-        let collidePoint = ball.x - (paddle.x + paddle.width/2);
-        
-        // Normalize the value
-        collidePoint = collidePoint / (paddle.width/2);
-        
-        // Calculate angle of ball from collision
-        let angle = collidePoint * Math.PI/3;
-            
-            
-        ball.dx = ball.speed * Math.sin(angle);
-        ball.dy = - ball.speed * Math.cos(angle);
-    }
-}
-
 // Resets the ball
 function resetBall(){
     ball.x = playSpace.width/2;
@@ -134,29 +76,6 @@ function resetBall(){
     ball.dy = -3;
 }
 
-// Show score, level and lives
-function showGameStats(text, textX, textY, img, imgX, imgY){
-    // draw text
-    context.fillStyle = "#FFF";
-    context.font = "25px Germania One";
-    context.fillText(text, textX, textY);
-    
-    // draw image
-    context.drawImage(img, imgX, imgY, width = 40, height = 40);
-}
-
-// Draw function (draws all parts of the game to the canvas)
-function draw(){
-    drawPaddle();
-    drawBall();
-    drawBricks();
-    // Score
-    showGameStats(score, 50, 40, scoreImg, 5, 5);
-    // Lives
-    showGameStats(remainingLives, playSpace.width - 40, 40, lifeImg, playSpace.width-70, 5); 
-    // Level
-    showGameStats(level, playSpace.width/2, 40, levelImg, playSpace.width/2 - 45, 5);
-}
 
 // Update game function (game logic)
 function update(){
@@ -170,11 +89,8 @@ function update(){
 // Game loop
 function loop(){
     context.drawImage(bg_img, 0, 0);
-
     draw();
-
     update();
-
     requestAnimationFrame(loop);
 }
 loop();
