@@ -42,7 +42,7 @@ function drawBricks(){
 function showGameStats(text, textX, textY, img, imgX, imgY){
     // draw text
     context.fillStyle = "#FFF";
-    context.font = "25px Germania One";
+    context.font = "25px Big Shoulders Stencil Display";
     context.fillText(text, textX, textY);
     
     // draw image
