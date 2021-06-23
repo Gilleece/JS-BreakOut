@@ -42,7 +42,7 @@ function drawBricks(){
 function showGameStats(text, textX, textY, img, imgX, imgY){
     // draw text
     context.fillStyle = "#FFF";
-    context.font = "25px Big Shoulders Stencil Display";
+    context.font = "30px Big Shoulders Stencil Display";
     context.fillText(text, textX, textY);
     
     // draw image
@@ -55,9 +55,9 @@ function draw(){
     drawBall();
     drawBricks();
     // Score
-    showGameStats(score, 50, 40, scoreImg, 5, 5);
+    showGameStats(score, 60, 40, scoreImg, 15, 5);
     // Lives
-    showGameStats(remainingLives, playSpace.width - 40, 40, lifeImg, playSpace.width-70, 5); 
+    showGameStats(remainingLives, playSpace.width - 30, 40, lifeImg, playSpace.width-75, 8); 
     // Level
-    showGameStats(level, playSpace.width/2, 40, levelImg, playSpace.width/2 - 45, 5);
+    showGameStats(level, playSpace.width/2 + 20, 40, levelImg, playSpace.width/2 - 25, 5);
 }
