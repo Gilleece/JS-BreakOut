@@ -6,6 +6,7 @@ function ballBrickCollision(){
             // if the brick isn't broken
             if(brickMap.status){
                 if(ball.x + ball.radius > brickMap.x && ball.x - ball.radius < brickMap.x + brick.width && ball.y + ball.radius > brickMap.y && ball.y - ball.radius < brickMap.y + brick.height){
+                    brickHit.play();
                     ball.dy = - ball.dy;
                     brickMap.status = false; // The brick is removed from play, cannot be collided with.
                     score += scoreUnit;
@@ -19,13 +20,16 @@ function ballBrickCollision(){
 function ballWallCollision(){
     if(ball.x + ball.radius > playSpace.width || ball.x - ball.radius < 0){
         ball.dx = - ball.dx;
+        wallHit.play();
     }
     
     if(ball.y - ball.radius < 0){
         ball.dy = -ball.dy;
+        wallHit.play();
     }
     
     if(ball.y + ball.radius > playSpace.height){
+        lifeLost.play();
         remainingLives--;
         resetBall();
     }
@@ -34,6 +38,9 @@ function ballWallCollision(){
 // Collision detection for ball and paddle
 function ballPaddleCollision(){
     if(ball.x < paddle.x + paddle.width && ball.x > paddle.x && paddle.y < paddle.y + paddle.height && ball.y > paddle.y){
+        
+        // Sound effect
+        paddleHit.play();
         
         // Calculate position of ball relative to paddle
         let collidePoint = ball.x - (paddle.x + paddle.width/2);

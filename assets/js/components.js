@@ -1,6 +1,5 @@
 ///// IMAGES /////
 
-// Load background image
 const bg_img = new Image();
 bg_img.src = "assets/img/bg_img.jpg";
 
@@ -17,5 +16,20 @@ scoreImg.src = "assets/img/score.png";
 
 
 ///// SOUNDS /////
+
+const wallHit = new Audio();
+wallHit.src = "assets/sounds/wall.mp3";
+
+const lifeLost = new Audio();
+lifeLost.src = "assets/sounds/life_lost.mp3";
+
+const paddleHit = new Audio();
+paddleHit.src = "assets/sounds/paddle_hit.mp3";
+
+const win = new Audio();
+win.src = "assets/sounds/win.mp3";
+
+const brickHit = new Audio();
+brickHit.src = "assets/sounds/brick_hit.mp3";
 
 ///// END OF SOUNDS /////

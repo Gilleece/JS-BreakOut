@@ -77,6 +77,32 @@ function resetBall(){
     ball.dy = -3;
 }
 
+// Next level
+function nextLevel(){
+    let isLevelDone = true;
+    
+    // check if all the bricks are broken
+    for(let i = 0; i < brick.row; i++){
+        for(let j = 0; j < brick.column; j++){
+            isLevelDone = isLevelDone && ! bricks[i][j].status;
+        }
+    }
+    
+    if(isLevelDone){        
+        if(level >= maxLevel){
+            win.play();
+            showYouWin();
+            gameOverState = true;
+            return;
+        }
+        brick.column++;
+        createBricks();
+        ball.speed += 0.5;
+        resetBall();
+        level++;
+    }
+}
+
 // Game over
 function gameOver(){
     if(remainingLives <= 0){
@@ -91,6 +117,7 @@ function update(){
     ballWallCollision();
     ballPaddleCollision();
     ballBrickCollision();
+    nextLevel();
     gameOver();
 }
 
