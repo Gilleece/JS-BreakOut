@@ -134,6 +134,7 @@ function resetBall(){
 function draw(){
     drawPaddle();
     drawBall();
+    drawBricks();
 }
 
 // Update game function (game logic)
@@ -146,7 +147,7 @@ function update(){
 
 // Game loop
 function loop(){
-    context.drawImage(bg_img, 0, 0)
+    context.drawImage(bg_img, 0, 0);
 
     draw();
 
