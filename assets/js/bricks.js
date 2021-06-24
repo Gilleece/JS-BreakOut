@@ -1,31 +1,43 @@
-// Default brick parameters
+// Brick parameters
 const brick = {
-    width : 55,
-    height : 20,
-    offSetLeft : 18,
-    offSetTop : 20,
-    marginTop : 40,
-    row : 8,
-    column : 3,
-    fillColor : "#2e3548",
-    strokeColor : "#FFF"
+    width: 55,
+    height: 20,
+    offSetLeft: 18,
+    offSetTop: 20,
+    marginTop: 40,
+    row: 8,
+    column: 4,
+    fillColor: "#2e3548",
+    strokeColor: "#FFF"
+}
+
+const widePaddleBrick = {
+    fillColor: "pink",
+    strokeColor: "purple"
 }
 
 let bricks = [];
 
-// Maps out the bricks
-function createBricks(){
-    // i is the row, j is the column. This maps out the bricks.
-    for(let i = 0; i < brick.row; i++){
-        bricks[i] = [];
-        for(let j = 0; j < brick.column; j++){
-            bricks[i][j] = {
-                x : i * ( brick.offSetLeft + brick.width ) + brick.offSetLeft,
-                y : j * ( brick.offSetTop + brick.height ) + brick.offSetTop + brick.marginTop,
-                status : true
-            }
-        }
-    }
-}
+// Special brick behaviours
 
-createBricks();
+function widePaddleBehaviour() {
+    // Uses setInterval to give a smooth animation to the paddle growth
+    let growthCounter = 150;
+    setInterval(function () {
+        if (growthCounter < 300) {
+            growthCounter += 1;
+            paddleWidth += 1;
+        }
+        else clearInterval();
+    }, 20);
+    let reductionCounter = 300;
+    setTimeout(function() {
+        setInterval(function () {
+        if (reductionCounter <= 300 && reductionCounter > 150 && growthCounter == 300) {
+            reductionCounter -= 1;
+            paddleWidth -= 1;
+        }
+        }, 20)}
+    , 6000);
+    return;
+}

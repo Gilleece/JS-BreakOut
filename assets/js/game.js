@@ -2,20 +2,6 @@
 const playSpace = document.getElementById("game");
 const context = playSpace.getContext("2d");
 
-// Game constants and variables
-const paddleMarginBottom = 75;
-const paddleHeight = 20;
-const maxLevel = 5;
-let paddleWidth = 150;
-let remainingLives = 5;
-let level = 1;
-let score = 0;
-let scoreUnit = 10;
-let ballRadius = 12;
-let leftArrow = false;
-let rightArrow = false;
-let gameOverState = false;
-
 // Sets Line Width thicker for visibility
 context.lineWidth = 3;
 
@@ -23,8 +9,7 @@ context.lineWidth = 3;
 const paddle = {
     x : playSpace.width/2 - paddleWidth/2,
     y : playSpace.height - paddleMarginBottom - paddleHeight,
-    width : paddleWidth,
-    height : paddleHeight,
+    height : paddleHeight, // Width is not set here as it can be modified by certain brick behaviours
     dx :5
 }
 
@@ -56,7 +41,7 @@ document.addEventListener("keydown", function(event){
 
 // Paddle movement
 function movePaddle(){
-    if(rightArrow && paddle.x + paddle.width < playSpace.width){
+    if(rightArrow && paddle.x + paddleWidth < playSpace.width){
         paddle.x += paddle.dx;
     }else if(leftArrow && paddle.x > 0){
         paddle.x -= paddle.dx;
@@ -156,6 +141,46 @@ function muteFunction(){
     win.muted = win.muted ? false : true;
     lifeLost.muted = lifeLost.muted ? false : true;
 }
+
+// Maps out the bricks
+function createBricks(){
+    // i is the row, j is the column. This maps out the bricks.
+    if(level == 1) {
+        for(let i = 0; i < brick.row; i++){
+            bricks[i] = [];
+            for(let j = 0; j < brick.column; j++){
+                bricks[i][j] = {
+                    x : i * ( brick.offSetLeft + brick.width ) + brick.offSetLeft,
+                    y : j * ( brick.offSetTop + brick.height ) + brick.offSetTop + brick.marginTop,
+                    status : true
+                }
+            }
+        }
+    } else if(level == 2) {
+        for(let i = 0; i < brick.row; i++){
+            bricks[i] = [];
+            for(let j = 0; j < brick.column; j++){
+                if(i == 1 && j == 2 || i == 6 && j == 2) {
+                    bricks[i][j] = {
+                        x : i * ( brick.offSetLeft + brick.width ) + brick.offSetLeft,
+                        y : j * ( brick.offSetTop + brick.height ) + brick.offSetTop + brick.marginTop,
+                        status : true,
+                        type : "widePaddleBrick"
+                    }
+                } else {
+                    bricks[i][j] = {
+                        x : i * ( brick.offSetLeft + brick.width ) + brick.offSetLeft,
+                        y : j * ( brick.offSetTop + brick.height ) + brick.offSetTop + brick.marginTop,
+                        status : true,
+                        type : "normal"
+                    }
+                }
+            }
+        }
+    }
+}
+
+createBricks();
 
 // Update game function (game logic)
 function update(){
