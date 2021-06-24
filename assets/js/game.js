@@ -179,6 +179,7 @@ function createBricks(){
                 }
             }
         }
+    // Level 3 - Introduces speedBrick     
     } else if(level == 3) {
         for(let i = 0; i < brick.row; i++){
             bricks[i] = [];
@@ -196,6 +197,42 @@ function createBricks(){
                         y : j * ( brick.offSetTop + brick.height ) + brick.offSetTop + brick.marginTop,
                         status : true,
                         type : "speedBrick"
+                    }
+                } else {
+                    bricks[i][j] = {
+                        x : i * ( brick.offSetLeft + brick.width ) + brick.offSetLeft,
+                        y : j * ( brick.offSetTop + brick.height ) + brick.offSetTop + brick.marginTop,
+                        status : true,
+                        type : "normal"
+                    }
+                }
+            }
+        }
+    // Level 4 - Introduces ghostBrick (not as spooky as it sounds)
+    } else if(level == 4) {
+        for(let i = 0; i < brick.row; i++){
+            bricks[i] = [];
+            for(let j = 0; j < brick.column; j++){
+                if(i == 2 && j == 3 || i == 5 && j == 3) {
+                    bricks[i][j] = {
+                        x : i * ( brick.offSetLeft + brick.width ) + brick.offSetLeft,
+                        y : j * ( brick.offSetTop + brick.height ) + brick.offSetTop + brick.marginTop,
+                        status : true,
+                        type : "widePaddleBrick"
+                    }
+                } else if (i == 1 && j == 2 || i == 1 && j == 4 || i == 6 && j == 2 || i == 6 && j == 4) {
+                    bricks[i][j] = {
+                        x : i * ( brick.offSetLeft + brick.width ) + brick.offSetLeft,
+                        y : j * ( brick.offSetTop + brick.height ) + brick.offSetTop + brick.marginTop,
+                        status : true,
+                        type : "speedBrick"
+                    }
+                } else if (j == 6 || j == 5 || j == 0 || j == 1 || i == 0 || i == 7) {
+                    bricks[i][j] = {
+                        x : i * ( brick.offSetLeft + brick.width ) + brick.offSetLeft,
+                        y : j * ( brick.offSetTop + brick.height ) + brick.offSetTop + brick.marginTop,
+                        status : true,
+                        type : "ghostBrick"
                     }
                 } else {
                     bricks[i][j] = {

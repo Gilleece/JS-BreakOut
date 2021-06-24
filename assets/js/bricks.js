@@ -6,7 +6,7 @@ const brick = {
     offSetTop: 20,
     marginTop: 40,
     row: 8,
-    column: 4,
+    column: 7,
     fillColor: "#2e3548",
     strokeColor: "#FFF"
 }
@@ -19,6 +19,11 @@ const widePaddleBrick = {
 const speedBrick = {
     fillColor: "white",
     strokeColor: "gold"
+}
+
+const ghostBrick = {
+    fillColor: "rgba(255,0,0,0.3)",
+    strokeColor: "rgba(0,255,0,0.3)"
 }
 
 let bricks = [];

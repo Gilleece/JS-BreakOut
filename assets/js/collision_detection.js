@@ -15,7 +15,7 @@ function ballBrickCollision() {
                 if (ball.x + ball.radius > brickMap.x && ball.x - ball.radius < brickMap.x + brick.width && ball.y + ball.radius > brickMap.y && ball.y - ball.radius < brickMap.y + brick.height) {
                     brickHit.play();
                     ball.dy = - ball.dy;
-                    brickMap.status = false; // The brick is removed from play, cannot be collided with.
+                    brickMap.status = false; 
                     score += scoreUnit;
                     widePaddleBehaviour();
                 }
@@ -23,9 +23,22 @@ function ballBrickCollision() {
                 if (ball.x + ball.radius > brickMap.x && ball.x - ball.radius < brickMap.x + brick.width && ball.y + ball.radius > brickMap.y && ball.y - ball.radius < brickMap.y + brick.height) {
                     brickHit.play();
                     ball.dy = - ball.dy;
-                    brickMap.status = false; // The brick is removed from play, cannot be collided with.
+                    brickMap.status = false; 
                     score += scoreUnit;
                     speedBrickBehaviour();
+                }
+            } else if (brickMap.status && brickMap.type == "speedBrick") {
+                if (ball.x + ball.radius > brickMap.x && ball.x - ball.radius < brickMap.x + brick.width && ball.y + ball.radius > brickMap.y && ball.y - ball.radius < brickMap.y + brick.height) {
+                    ball.dy = - ball.dy;
+                    brickMap.status = false; 
+                    score += scoreUnit;
+                    speedBrickBehaviour();
+                }
+            } else if (brickMap.status && brickMap.type == "ghostBrick") {
+                if (ball.x + ball.radius > brickMap.x && ball.x - ball.radius < brickMap.x + brick.width && ball.y + ball.radius > brickMap.y && ball.y - ball.radius < brickMap.y + brick.height) {
+                    //ball.dy = - ball.dy; Commenting this out allows for the ball to pass through any ghost bricks without bouncing off
+                    brickMap.status = false; 
+                    score += scoreUnit / 2; // Score is halved for ghost bricks
                 }
             }
         }

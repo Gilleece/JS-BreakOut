@@ -45,6 +45,12 @@ function drawBricks(){
                 
                 context.strokeStyle = speedBrick.strokeColor;
                 context.strokeRect(brickMap.x, brickMap.y, brick.width, brick.height);
+            } else if (brickMap.status && brickMap.type == "ghostBrick") {
+                context.fillStyle = ghostBrick.fillColor;
+                context.fillRect(brickMap.x, brickMap.y, brick.width, brick.height);
+                
+                context.strokeStyle = ghostBrick.strokeColor;
+                context.strokeRect(brickMap.x, brickMap.y, brick.width, brick.height);
             }
         }
     }
