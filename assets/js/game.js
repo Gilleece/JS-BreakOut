@@ -17,8 +17,7 @@ const paddle = {
 const ball = {
     x : playSpace.width/2,
     y : paddle.y - ballRadius,
-    radius : ballRadius,
-    speed : 4,
+    speed : 6,
     dx : 3 * (Math.random() * 2 - 1),
     dy : -3
 }
@@ -233,6 +232,54 @@ function createBricks(){
                         y : j * ( brick.offSetTop + brick.height ) + brick.offSetTop + brick.marginTop,
                         status : true,
                         type : "ghostBrick"
+                    }
+                } else {
+                    bricks[i][j] = {
+                        x : i * ( brick.offSetLeft + brick.width ) + brick.offSetLeft,
+                        y : j * ( brick.offSetTop + brick.height ) + brick.offSetTop + brick.marginTop,
+                        status : true,
+                        type : "normal"
+                    }
+                }
+            }
+        }
+    // Level 5 - Introduces bigBallBrick
+    } else if(level == 5) {
+        for(let i = 0; i < brick.row; i++){
+            bricks[i] = [];
+            for(let j = 0; j < brick.column; j++){
+                if(i == 4 && j == 0 || i == 4 && j == 4) {
+                    bricks[i][j] = {
+                        x : i * ( brick.offSetLeft + brick.width ) + brick.offSetLeft,
+                        y : j * ( brick.offSetTop + brick.height ) + brick.offSetTop + brick.marginTop,
+                        status : true,
+                        type : "widePaddleBrick"
+                    }
+                } else if (i == 3 && j == 0 || i == 3 && j == 4) {
+                    bricks[i][j] = {
+                        x : i * ( brick.offSetLeft + brick.width ) + brick.offSetLeft,
+                        y : j * ( brick.offSetTop + brick.height ) + brick.offSetTop + brick.marginTop,
+                        status : true,
+                        type : "speedBrick"
+                    }
+                } else if ( 
+                        i == 1 && j == 1 || i == 1 && j == 2 || i == 1 && j == 3 || i == 2 && j == 1 || i == 2 && j == 2 || i == 2 && j == 3 ||
+                        i == 5 && j == 1 || i == 5 && j == 2 || i == 5 && j == 3 || i == 6 && j == 1 || i == 6 && j == 2 || i == 6 && j == 3 ||
+                        i == 5 && j == 5 || i == 5 && j == 6 || i == 6 && j == 5 || i == 6 && j == 6 ||
+                        i == 1 && j == 5 || i == 1 && j == 6 || i == 2 && j == 5 || i == 2 && j == 6
+                        ) {
+                    bricks[i][j] = {
+                        x : i * ( brick.offSetLeft + brick.width ) + brick.offSetLeft,
+                        y : j * ( brick.offSetTop + brick.height ) + brick.offSetTop + brick.marginTop,
+                        status : true,
+                        type : "ghostBrick"
+                    }
+                } else if (i == 0 && j == 7 || i == 7 && j == 7 || i == 0 && j == 0 || i == 7 && j == 0) {
+                    bricks[i][j] = {
+                        x : i * ( brick.offSetLeft + brick.width ) + brick.offSetLeft,
+                        y : j * ( brick.offSetTop + brick.height ) + brick.offSetTop + brick.marginTop,
+                        status : true,
+                        type : "bigBallBrick"
                     }
                 } else {
                     bricks[i][j] = {

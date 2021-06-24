@@ -5,14 +5,14 @@ function ballBrickCollision() {
             let brickMap = bricks[i][j];
             // if the brick isn't broken
             if (brickMap.status && brickMap.type == "normal") {
-                if (ball.x + ball.radius > brickMap.x && ball.x - ball.radius < brickMap.x + brick.width && ball.y + ball.radius > brickMap.y && ball.y - ball.radius < brickMap.y + brick.height) {
+                if (ball.x + ballRadius > brickMap.x && ball.x - ballRadius < brickMap.x + brick.width && ball.y + ballRadius > brickMap.y && ball.y - ballRadius < brickMap.y + brick.height) {
                     brickHit.play();
                     ball.dy = - ball.dy;
                     brickMap.status = false; // The brick is removed from play, cannot be collided with.
                     score += scoreUnit;
                 }
             } else if (brickMap.status && brickMap.type == "widePaddleBrick") {
-                if (ball.x + ball.radius > brickMap.x && ball.x - ball.radius < brickMap.x + brick.width && ball.y + ball.radius > brickMap.y && ball.y - ball.radius < brickMap.y + brick.height) {
+                if (ball.x + ballRadius > brickMap.x && ball.x - ballRadius < brickMap.x + brick.width && ball.y + ballRadius > brickMap.y && ball.y - ballRadius < brickMap.y + brick.height) {
                     brickHit.play();
                     ball.dy = - ball.dy;
                     brickMap.status = false; 
@@ -20,7 +20,7 @@ function ballBrickCollision() {
                     widePaddleBehaviour();
                 }
             } else if (brickMap.status && brickMap.type == "speedBrick") {
-                if (ball.x + ball.radius > brickMap.x && ball.x - ball.radius < brickMap.x + brick.width && ball.y + ball.radius > brickMap.y && ball.y - ball.radius < brickMap.y + brick.height) {
+                if (ball.x + ballRadius > brickMap.x && ball.x - ballRadius < brickMap.x + brick.width && ball.y + ballRadius > brickMap.y && ball.y - ballRadius < brickMap.y + brick.height) {
                     brickHit.play();
                     ball.dy = - ball.dy;
                     brickMap.status = false; 
@@ -28,17 +28,24 @@ function ballBrickCollision() {
                     speedBrickBehaviour();
                 }
             } else if (brickMap.status && brickMap.type == "speedBrick") {
-                if (ball.x + ball.radius > brickMap.x && ball.x - ball.radius < brickMap.x + brick.width && ball.y + ball.radius > brickMap.y && ball.y - ball.radius < brickMap.y + brick.height) {
+                if (ball.x + ballRadius > brickMap.x && ball.x - ballRadius < brickMap.x + brick.width && ball.y + ballRadius > brickMap.y && ball.y - ballRadius < brickMap.y + brick.height) {
                     ball.dy = - ball.dy;
                     brickMap.status = false; 
                     score += scoreUnit;
                     speedBrickBehaviour();
                 }
             } else if (brickMap.status && brickMap.type == "ghostBrick") {
-                if (ball.x + ball.radius > brickMap.x && ball.x - ball.radius < brickMap.x + brick.width && ball.y + ball.radius > brickMap.y && ball.y - ball.radius < brickMap.y + brick.height) {
+                if (ball.x + ballRadius > brickMap.x && ball.x - ballRadius < brickMap.x + brick.width && ball.y + ballRadius > brickMap.y && ball.y - ballRadius < brickMap.y + brick.height) {
                     //ball.dy = - ball.dy; Commenting this out allows for the ball to pass through any ghost bricks without bouncing off
                     brickMap.status = false; 
                     score += scoreUnit / 2; // Score is halved for ghost bricks
+                }
+            } else if (brickMap.status && brickMap.type == "bigBallBrick") {
+                if (ball.x + ballRadius > brickMap.x && ball.x - ballRadius < brickMap.x + brick.width && ball.y + ballRadius > brickMap.y && ball.y - ballRadius < brickMap.y + brick.height) {
+                    ball.dy = - ball.dy;
+                    brickMap.status = false; 
+                    score += scoreUnit;
+                    bigBallBrickBehaviour();
                 }
             }
         }
@@ -47,17 +54,17 @@ function ballBrickCollision() {
 
 // Collision detection for ball and wall
 function ballWallCollision() {
-    if (ball.x + ball.radius > playSpace.width || ball.x - ball.radius < 0) {
+    if (ball.x + ballRadius > playSpace.width || ball.x - ballRadius < 0) {
         ball.dx = - ball.dx;
         wallHit.play();
     }
 
-    if (ball.y - ball.radius < 0) {
+    if (ball.y - ballRadius < 0) {
         ball.dy = -ball.dy;
         wallHit.play();
     }
 
-    if (ball.y + ball.radius > playSpace.height) {
+    if (ball.y + ballRadius > playSpace.height) {
         lifeLost.play();
         remainingLives--;
         resetBall();

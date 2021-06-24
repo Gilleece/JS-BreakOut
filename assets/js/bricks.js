@@ -6,7 +6,7 @@ const brick = {
     offSetTop: 20,
     marginTop: 40,
     row: 8,
-    column: 7,
+    column: 4,
     fillColor: "#2e3548",
     strokeColor: "#FFF"
 }
@@ -24,6 +24,11 @@ const speedBrick = {
 const ghostBrick = {
     fillColor: "rgba(255,0,0,0.3)",
     strokeColor: "rgba(0,255,0,0.3)"
+}
+
+const bigBallBrick = {
+    fillColor: "orange",
+    strokeColor: "blue"
 }
 
 let bricks = [];
@@ -55,4 +60,26 @@ function widePaddleBehaviour() {
 function speedBrickBehaviour() {
     ball.speed += 3;
     setTimeout( () => ball.speed -= 3, 8000);
+}
+
+function bigBallBrickBehaviour() {
+    // Uses setInterval to give a smooth animation to the ball growth
+    let growthCounter = 12;
+    setInterval(function () {
+        if (growthCounter < 18) {
+            growthCounter += 1;
+            ballRadius += 1;
+        }
+        else clearInterval();
+    }, 50);
+    let reductionCounter = 18;
+    setTimeout(function() {
+        setInterval(function () {
+        if (reductionCounter <= 18 && reductionCounter > 12 && growthCounter == 18) {
+            reductionCounter -= 1;
+            ballRadius -= 1;
+        }
+        }, 50)}
+    , 10000);
+    return;
 }

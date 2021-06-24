@@ -11,7 +11,7 @@ function drawPaddle(){
 function drawBall(){
     context.beginPath();
     
-    context.arc(ball.x, ball.y, ball.radius, 0, Math.PI*2);
+    context.arc(ball.x, ball.y, ballRadius, 0, Math.PI*2);
     context.fillStyle = "#ffcd05";
     context.fill();
     
@@ -50,6 +50,12 @@ function drawBricks(){
                 context.fillRect(brickMap.x, brickMap.y, brick.width, brick.height);
                 
                 context.strokeStyle = ghostBrick.strokeColor;
+                context.strokeRect(brickMap.x, brickMap.y, brick.width, brick.height);
+            } else if (brickMap.status && brickMap.type == "bigBallBrick") {
+                context.fillStyle = bigBallBrick.fillColor;
+                context.fillRect(brickMap.x, brickMap.y, brick.width, brick.height);
+                
+                context.strokeStyle = bigBallBrick.strokeColor;
                 context.strokeRect(brickMap.x, brickMap.y, brick.width, brick.height);
             }
         }
