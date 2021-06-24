@@ -39,6 +39,12 @@ function drawBricks(){
                 
                 context.strokeStyle = widePaddleBrick.strokeColor;
                 context.strokeRect(brickMap.x, brickMap.y, brick.width, brick.height);
+            } else if (brickMap.status && brickMap.type == "speedBrick") {
+                context.fillStyle = speedBrick.fillColor;
+                context.fillRect(brickMap.x, brickMap.y, brick.width, brick.height);
+                
+                context.strokeStyle = speedBrick.strokeColor;
+                context.strokeRect(brickMap.x, brickMap.y, brick.width, brick.height);
             }
         }
     }

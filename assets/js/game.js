@@ -80,11 +80,11 @@ function nextLevel(){
             gameOverState = true;
             return;
         }
+        level++;
         brick.column++;
         createBricks();
         ball.speed += 0.5;
         resetBall();
-        level++;
     }
 }
 
@@ -144,18 +144,20 @@ function muteFunction(){
 
 // Maps out the bricks
 function createBricks(){
-    // i is the row, j is the column. This maps out the bricks.
+    // Level 1 - Only default bricks
     if(level == 1) {
-        for(let i = 0; i < brick.row; i++){
+        for(let i = 0; i < brick.row; i++){ // i is the row, j is the column. This maps out the bricks. 
             bricks[i] = [];
             for(let j = 0; j < brick.column; j++){
                 bricks[i][j] = {
                     x : i * ( brick.offSetLeft + brick.width ) + brick.offSetLeft,
                     y : j * ( brick.offSetTop + brick.height ) + brick.offSetTop + brick.marginTop,
-                    status : true
+                    status : true,
+                    type : "normal"
                 }
             }
         }
+    // Level 2 - Introduces widePaddleBrick
     } else if(level == 2) {
         for(let i = 0; i < brick.row; i++){
             bricks[i] = [];
@@ -166,6 +168,34 @@ function createBricks(){
                         y : j * ( brick.offSetTop + brick.height ) + brick.offSetTop + brick.marginTop,
                         status : true,
                         type : "widePaddleBrick"
+                    }
+                } else {
+                    bricks[i][j] = {
+                        x : i * ( brick.offSetLeft + brick.width ) + brick.offSetLeft,
+                        y : j * ( brick.offSetTop + brick.height ) + brick.offSetTop + brick.marginTop,
+                        status : true,
+                        type : "normal"
+                    }
+                }
+            }
+        }
+    } else if(level == 3) {
+        for(let i = 0; i < brick.row; i++){
+            bricks[i] = [];
+            for(let j = 0; j < brick.column; j++){
+                if(i == 1 && j == 1 || i == 6 && j == 1 || i == 1 && j == 4 || i == 6 && j == 4) {
+                    bricks[i][j] = {
+                        x : i * ( brick.offSetLeft + brick.width ) + brick.offSetLeft,
+                        y : j * ( brick.offSetTop + brick.height ) + brick.offSetTop + brick.marginTop,
+                        status : true,
+                        type : "widePaddleBrick"
+                    }
+                } else if (i == 0 && j == 0 || i == 0 && j == 5 || i == 7 && j == 0 || i == 7 && j == 5) {
+                    bricks[i][j] = {
+                        x : i * ( brick.offSetLeft + brick.width ) + brick.offSetLeft,
+                        y : j * ( brick.offSetTop + brick.height ) + brick.offSetTop + brick.marginTop,
+                        status : true,
+                        type : "speedBrick"
                     }
                 } else {
                     bricks[i][j] = {

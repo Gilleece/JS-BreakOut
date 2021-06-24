@@ -16,6 +16,11 @@ const widePaddleBrick = {
     strokeColor: "purple"
 }
 
+const speedBrick = {
+    fillColor: "white",
+    strokeColor: "gold"
+}
+
 let bricks = [];
 
 // Special brick behaviours
@@ -40,4 +45,9 @@ function widePaddleBehaviour() {
         }, 20)}
     , 6000);
     return;
+}
+
+function speedBrickBehaviour() {
+    ball.speed += 3;
+    setTimeout( () => ball.speed -= 3, 8000);
 }

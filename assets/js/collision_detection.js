@@ -19,6 +19,14 @@ function ballBrickCollision() {
                     score += scoreUnit;
                     widePaddleBehaviour();
                 }
+            } else if (brickMap.status && brickMap.type == "speedBrick") {
+                if (ball.x + ball.radius > brickMap.x && ball.x - ball.radius < brickMap.x + brick.width && ball.y + ball.radius > brickMap.y && ball.y - ball.radius < brickMap.y + brick.height) {
+                    brickHit.play();
+                    ball.dy = - ball.dy;
+                    brickMap.status = false; // The brick is removed from play, cannot be collided with.
+                    score += scoreUnit;
+                    speedBrickBehaviour();
+                }
             }
         }
     }
