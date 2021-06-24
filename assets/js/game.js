@@ -88,10 +88,10 @@ function nextLevel(){
         }
     }
     
-    if(isLevelDone){        
+    if(isLevelDone){     
+        win.play();   
         if(level >= maxLevel){
-            win.play();
-            showYouWin();
+            winScreen();
             gameOverState = true;
             return;
         }
@@ -106,8 +106,55 @@ function nextLevel(){
 // Game over
 function gameOver(){
     if(remainingLives <= 0){
+        loseScreen();
         gameOverState = true;
     }
+}
+
+// Game over Screen
+const gameover = document.getElementById("gameover")
+const restart = document.getElementById("play-again")
+const youWon = document.getElementById("youwon")
+const youLose = document.getElementById("youlose")
+
+restart.addEventListener("click", function() {
+    location.reload(); // Reloads page to restart the game
+})
+
+// Win Screen
+function winScreen() {
+    playSpace.style.display = "none";
+    gameover.style.display = "block";
+    youWon.style.display = "block";
+    restart.style.display = "block";
+}
+
+// Lose Screen
+function loseScreen() {
+    playSpace.style.display = "none";
+    gameover.style.display = "block";
+    youLose.style.display = "block";
+    restart.style.display = "block";
+}
+
+// Select mute button
+const muteButton  = document.getElementById("mute-button");
+
+muteButton.addEventListener("click", muteFunction);
+
+function muteFunction(){
+    // Update image to show if muted or not muted
+    let imgSrc = muteButton.getAttribute("src");
+    let muteIcon = imgSrc == "assets/img/SOUND_ON.png" ? "assets/img/SOUND_OFF.png" : "assets/img/SOUND_ON.png";
+    
+    muteButton.setAttribute("src", muteIcon);
+    
+    // If statements for muting and unmuting sounds
+    wallHit.muted = wallHit.muted ? false : true;
+    paddleHit.muted = paddleHit.muted ? false : true;
+    brickHit.muted = brickHit.muted ? false : true;
+    win.muted = win.muted ? false : true;
+    lifeLost.muted = lifeLost.muted ? false : true;
 }
 
 // Update game function (game logic)

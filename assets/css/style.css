@@ -13,3 +13,54 @@
         left:-50%;
 }
 
+#mute-button {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+}
+
+#gameover {
+    margin-top: 10vh;
+    width: 600px;
+    height: 750px;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
+.game-over-div {
+    position:fixed;
+    left:50%; 
+}
+
+.game-over-div .game-over-div-inner {
+    position:relative; 
+    left:-50%;
+}
+
+#youlose {
+    padding-top: 10vh;
+    padding-left: 3vh;
+    display: none;
+}
+
+#youwon {
+    display: none;
+    padding-left: 18vh;
+}
+
+#play-again {
+    font-family: "Big Shoulders Stencil Display";
+    cursor: pointer;
+    color: white;
+    font-size: 4em;
+    padding-top: 15vh;
+    padding-left: 20vh;
+    display: none;
+}
+
+#play-again:hover {
+    color: purple;
+}
