@@ -124,12 +124,19 @@ const muteButton  = document.getElementById("mute-button");
 
 muteButton.addEventListener("click", muteFunction);
 
-function muteFunction(){
+function muteFunction(initial){
     // Update image to show if muted or not muted
     let imgSrc = muteButton.getAttribute("src");
     let muteIcon = imgSrc == "assets/img/SOUND_ON.png" ? "assets/img/SOUND_OFF.png" : "assets/img/SOUND_ON.png";
     
     muteButton.setAttribute("src", muteIcon);
+
+    // Local storage so that user's choice is remembered
+    if (localStorage.getItem("muted") == "true" && initial != true) {
+        localStorage.setItem("muted", "false")
+    } else if (initial != true) {
+        localStorage.setItem("muted", "true")
+    }
     
     // If statements for muting and unmuting sounds
     wallHit.muted = wallHit.muted ? false : true;
@@ -390,12 +397,21 @@ function loop(){
 }
 
 // Starts the game
-function startGame() {
+function startGameScreenLoop() {
     context.drawImage(bg_img, 0, 0);
     drawBricks();
     if(! gameOverState){
-        requestAnimationFrame(startGame);
+        requestAnimationFrame(startGameScreenLoop);
     }
+}
+
+function startGame() {
+    // Checks player's preference for audio muted or not
+    if (localStorage.getItem("muted") == "true") {
+        muteFunction(true);
+        console.log("test")
+    }
+    startGameScreenLoop();
 }
 
 startGame();
