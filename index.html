@@ -1,37 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Breakout!</title>
-    <link rel="stylesheet" href="assets/css/style.css" type="text/css"/>
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@700&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <div class="mute-button">
         <img src="assets/img/SOUND_ON.png" alt="" id="mute-button">
     </div>
 
-        <div class="game-over-div">
-            <div class="game-over-div-inner">
-                <div id="gameover">
-                    <img src="assets/img/youwin.png" alt="" id="youwon">
-                    <img src="assets/img/youlose.png" alt="" id="youlose">
-                    <div id="play-again">Play Again?</div>
-                </div>
-            </div>
-        </div>
-
     <div class="game-center-outer-div">
         <div class="game-center-inner-div">
             <canvas id="game" width="600" height="750"></canvas>
-        </div>    
+        </div>
     </div>
 
-    <script src="assets/js/constants_and_variables.js"></script>    
+    <div class="start-div">
+        <div class="start-div-inner">
+            <div id="start">
+                <div id="wide-paddle-brick">Wide Paddle <span id="speed-brick">Boosts Speed</span></div>
+                <div id="normal-brick">Normal bricks!</div>
+                <div id="ghost-brick">Ghost Brick <span id="big-ball-brick">Growth Brick</span></div>
+                <img src="assets/img/logo.png" id="logo">
+                <div id="play"><img src="assets/img/play_hover.png"></div>                
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="game-over-div">
+        <div class="game-over-div-inner">
+            <div id="gameover">
+                <img src="assets/img/youwin.png" alt="" id="youwon">
+                <img src="assets/img/youlose.png" alt="" id="youlose">
+                <div id="play-again">Play Again?</div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="assets/js/constants_and_variables.js"></script>
     <script src="assets/js/bricks.js"></script>
     <script src="assets/js/components.js"></script>
     <script src="assets/js/collision_detection.js"></script>
@@ -39,4 +57,5 @@
     <script src="assets/js/game.js"></script>
 
 </body>
+
 </html>

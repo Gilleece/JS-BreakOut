@@ -107,7 +107,6 @@ restart.addEventListener("click", function() {
 
 // Win Screen
 function winScreen() {
-    playSpace.style.display = "none";
     gameover.style.display = "block";
     youWon.style.display = "block";
     restart.style.display = "block";
@@ -115,7 +114,6 @@ function winScreen() {
 
 // Lose Screen
 function loseScreen() {
-    playSpace.style.display = "none";
     gameover.style.display = "block";
     youLose.style.display = "block";
     restart.style.display = "block";
@@ -141,10 +139,84 @@ function muteFunction(){
     lifeLost.muted = lifeLost.muted ? false : true;
 }
 
+// Select start screen elements
+const playButton  = document.getElementById("play");
+const wideText  = document.getElementById("wide-paddle-brick");
+const speedText  = document.getElementById("speed-brick");
+const normalText  = document.getElementById("normal-brick");
+const ghostText  = document.getElementById("ghost-brick");
+const growthText  = document.getElementById("big-ball-brick");
+const logo  = document.getElementById("logo");
+
+playButton.addEventListener("click", playButtonFunction);
+
+function playButtonFunction() {
+    playButton.style.display = "none";
+    wideText.style.display = "none";
+    speedText.style.display = "none";
+    normalText.style.display = "none";
+    ghostText.style.display = "none";
+    growthText.style.display = "none";
+    logo.style.display = "none";
+    level = 1;
+    createBricks();
+    loop();
+}
+
 // Maps out the bricks
 function createBricks(){
-    // Level 1 - Only default bricks
-    if(level == 1) {
+    // Level "0" - Start screen
+    if(level == 0) {
+        for(let i = 0; i < brick.row; i++){
+            bricks[i] = [];
+            for(let j = 0; j < brick.column; j++){
+                if(i == 1 && j == 0) {
+                    bricks[i][j] = {
+                        x : i * ( brick.offSetLeft + brick.width ) + brick.offSetLeft,
+                        y : j * ( brick.offSetTop + brick.height ) + brick.offSetTop + brick.marginTop,
+                        status : true,
+                        type : "widePaddleBrick"
+                    }
+                } else if (i == 6 && j == 0) {
+                    bricks[i][j] = {
+                        x : i * ( brick.offSetLeft + brick.width ) + brick.offSetLeft,
+                        y : j * ( brick.offSetTop + brick.height ) + brick.offSetTop + brick.marginTop,
+                        status : true,
+                        type : "speedBrick"
+                    }
+                } else if (i == 1 && j == 3) {
+                    bricks[i][j] = {
+                        x : i * ( brick.offSetLeft + brick.width ) + brick.offSetLeft,
+                        y : j * ( brick.offSetTop + brick.height ) + brick.offSetTop + brick.marginTop,
+                        status : true,
+                        type : "ghostBrick"
+                    }
+                } else if (i == 6 && j == 3) {
+                    bricks[i][j] = {
+                        x : i * ( brick.offSetLeft + brick.width ) + brick.offSetLeft,
+                        y : j * ( brick.offSetTop + brick.height ) + brick.offSetTop + brick.marginTop,
+                        status : true,
+                        type : "bigBallBrick"
+                    }
+                } else if (i == 3 && j == 1 || i == 3 && j == 2 || i == 4 && j == 1 || i == 4 && j == 2) {
+                    bricks[i][j] = {
+                        x : i * ( brick.offSetLeft + brick.width ) + brick.offSetLeft,
+                        y : j * ( brick.offSetTop + brick.height ) + brick.offSetTop + brick.marginTop,
+                        status : true,
+                        type : "normal"
+                    }
+                } else {
+                    bricks[i][j] = {
+                        x : i * ( brick.offSetLeft + brick.width ) + brick.offSetLeft,
+                        y : j * ( brick.offSetTop + brick.height ) + brick.offSetTop + brick.marginTop,
+                        status : false,
+                        type : "normal"
+                    }
+                }
+            }
+        }
+    // Level 1
+    } else if(level == 1) {
         for(let i = 0; i < brick.row; i++){ // i is the row, j is the column. This maps out the bricks. 
             bricks[i] = [];
             for(let j = 0; j < brick.column; j++){
@@ -316,4 +388,14 @@ function loop(){
         requestAnimationFrame(loop);
     }
 }
-loop();
+
+// Starts the game
+function startGame() {
+    context.drawImage(bg_img, 0, 0);
+    drawBricks();
+    if(! gameOverState){
+        requestAnimationFrame(startGame);
+    }
+}
+
+startGame();

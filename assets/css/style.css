@@ -14,12 +14,12 @@
 }
 
 #mute-button {
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 100px;
     cursor: pointer;
     position: absolute;
-    top: 15px;
-    left: 15px;
+    top: 30px;
+    left: 30px;
 }
 
 #gameover {
@@ -41,14 +41,15 @@
 }
 
 #youlose {
-    padding-top: 10vh;
-    padding-left: 3vh;
+    padding-top: 100px;
+    padding-left: 58px;
     display: none;
 }
 
 #youwon {
+    padding-top: 100px;
+    padding-left: 88px;
     display: none;
-    padding-left: 18vh;
 }
 
 #play-again {
@@ -56,11 +57,86 @@
     cursor: pointer;
     color: white;
     font-size: 4em;
-    padding-top: 15vh;
-    padding-left: 20vh;
+    padding-top: 130px;
+    padding-left: 189px;
     display: none;
 }
 
 #play-again:hover {
-    color: purple;
+    color: pink;
 }
+
+#start {
+    margin-top: 10vh;
+    width: 600px;
+    height: 750px;
+}
+
+.start-div {
+    position:fixed;
+    left:50%; 
+}
+
+.start-div .start-div-inner {
+    position:relative; 
+    left:-50%;
+}
+
+#play {
+    cursor: pointer;
+    display: inline-block;
+    animation: pulse 2s infinite;
+    padding-left: 150px;
+    padding-top: 76px;
+}
+
+#play:hover {
+    transform: scale(1.33);
+}
+
+#wide-paddle-brick {
+    font-family: "Big Shoulders Stencil Display";
+    color: white;
+    font-size: 2em;
+    padding-top: 83px;
+    padding-left: 52px;
+}
+
+#speed-brick {
+    padding-left: 218px;
+}
+
+#normal-brick {
+    font-family: "Big Shoulders Stencil Display";
+    color: white;
+    font-size: 2em;
+    padding-top: 42px;
+    padding-left: 219px;
+}
+
+#ghost-brick {
+    font-family: "Big Shoulders Stencil Display";
+    color: white;
+    font-size: 2em;
+    padding-top: 4px;
+    padding-left: 57px;
+}
+
+#big-ball-brick {
+    padding-left: 223px;
+}
+
+#logo {
+    padding-left: 51px;
+    padding-top: 100px;
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+      animation-timing-function: ease-in;
+    }
+    50% {
+      transform: scale(1.33);
+    }
+  }
