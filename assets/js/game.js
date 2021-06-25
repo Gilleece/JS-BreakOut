@@ -409,7 +409,6 @@ function startGame() {
     // Checks player's preference for audio muted or not
     if (localStorage.getItem("muted") == "true") {
         muteFunction(true);
-        console.log("test")
     }
     startGameScreenLoop();
 }

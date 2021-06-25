@@ -140,3 +140,49 @@
       transform: scale(1.33);
     }
   }
+
+body {
+    background: url("../img/bg_tile.jpg");
+    background-repeat: repeat;
+    background-position: center;
+    z-index:-1;
+}
+
+.mute_bg {
+  background-image: linear-gradient(-45deg, rgba(0, 0, 0, 0) 50%, purple 50%);
+  bottom:0;
+  left:-120%;
+  position:fixed;
+  right:0%;
+  top:0;
+  z-index:-1;
+}
+
+.backlight:before, .backlight:after {
+    content: '';
+    position: absolute;
+    left: 0px;
+    top: 13vh;
+    background: linear-gradient(45deg, #fb00a7, #0000eb, #03ff03,#ffff08, #f30101, #fb00a7, #0000eb, #03ff03,#ffff08, #f30101);
+    background-size: 500%;
+    width: 600px;
+    height: 700px;
+    z-index: -1;
+    animation: rgbEffect 60s linear infinite;
+}
+
+@keyframes rgbEffect {
+	0% {
+		background-position: 0 0;
+	}
+	50% {
+		background-position: 500% 0;
+	}
+	100% {
+		background-position: 0 0;
+	}
+}
+
+.backlight:after {
+	filter: blur(80px);
+}
