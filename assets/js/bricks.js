@@ -12,23 +12,23 @@ const brick = {
 }
 
 const widePaddleBrick = {
-    fillColor: "pink",
-    strokeColor: "purple"
+    fillColor: "purple",
+    strokeColor: "orange"
 }
 
 const speedBrick = {
-    fillColor: "white",
-    strokeColor: "gold"
+    fillColor: "black",
+    strokeColor: "purple"
 }
 
 const ghostBrick = {
-    fillColor: "rgba(255,0,0,0.3)",
-    strokeColor: "rgba(0,255,0,0.3)"
+    fillColor: "rgba(255,255,255,0.3)",
+    strokeColor: "rgba(156,156,156,0.3)"
 }
 
 const bigBallBrick = {
     fillColor: "orange",
-    strokeColor: "blue"
+    strokeColor: "purple"
 }
 
 let bricks = [];
