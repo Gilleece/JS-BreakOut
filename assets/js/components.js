@@ -24,12 +24,15 @@ const lifeLost = new Audio();
 lifeLost.src = "assets/sounds/life_lost.mp3";
 
 const paddleHit = new Audio();
-paddleHit.src = "assets/sounds/paddle_hit.mp3";
+paddleHit.src = "assets/sounds/paddle_hit.wav";
 
 const win = new Audio();
 win.src = "assets/sounds/win.mp3";
 
 const brickHit = new Audio();
 brickHit.src = "assets/sounds/brick_hit.mp3";
+
+const bgMusic = new Audio();
+bgMusic.src = "assets/sounds/bg_music.mp3";
 
 ///// END OF SOUNDS /////

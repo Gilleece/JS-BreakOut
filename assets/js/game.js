@@ -144,6 +144,7 @@ function muteFunction(initial){
     brickHit.muted = brickHit.muted ? false : true;
     win.muted = win.muted ? false : true;
     lifeLost.muted = lifeLost.muted ? false : true;
+    bgMusic.muted = bgMusic.muted ? false : true;
 }
 
 // Select start screen elements
@@ -158,6 +159,7 @@ const logo  = document.getElementById("logo");
 playButton.addEventListener("click", playButtonFunction);
 
 function playButtonFunction() {
+    bgMusic.play();
     playButton.style.display = "none";
     wideText.style.display = "none";
     speedText.style.display = "none";

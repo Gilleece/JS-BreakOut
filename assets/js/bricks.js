@@ -58,8 +58,8 @@ function widePaddleBehaviour() {
 }
 
 function speedBrickBehaviour() {
-    ball.speed += 3;
-    setTimeout( () => ball.speed -= 3, 8000);
+    ball.speed += 1;
+    setTimeout( () => ball.speed -= 1, 8000);
 }
 
 function bigBallBrickBehaviour() {
