@@ -390,7 +390,7 @@ function update(){
 
 // Game loop
 function loop(){
-    context.drawImage(bg_img, 0, 0);
+    context.drawImage(bg_img, 0, 0); // Alternatively, if a transparent background is desired: context.context.clearRect(0, 0, playSpace.width, playSpace.height);
     draw();
     update();
     if(! gameOverState){

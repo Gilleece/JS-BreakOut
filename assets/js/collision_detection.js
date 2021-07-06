@@ -73,7 +73,7 @@ function ballWallCollision() {
 
 // Collision detection for ball and paddle
 function ballPaddleCollision() {
-    if (ball.x < paddle.x + paddleWidth && ball.x > paddle.x && paddle.y < paddle.y + paddle.height && ball.y > paddle.y) {
+    if (ball.x < paddle.x + paddleWidth && ball.x > paddle.x && ball.y < paddle.y + paddle.height - 12 && ball.y > paddle.y) {
 
         // Sound effect
         paddleHit.play();
