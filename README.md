@@ -1,4 +1,7 @@
 # JS-BreakOut
+
+Live Link: https://gilleece.github.io/JS-BreakOut/
+
  A break out clone built using Javascript, HTML5 and CSS. 
 
 ![](assets/img/readme.png)
